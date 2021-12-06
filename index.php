@@ -8,8 +8,6 @@ require 'Controller/HomepageController.php';
 require 'Controller/StudentController.php';
 require 'Controller/TeacherController.php';
 require 'Controller/SchoolClassController.php';
-require 'Helper/Connection.php';
-
 
 
 //you could write a simple IF here based on some $_GET or $_POST vars, to choose your controller

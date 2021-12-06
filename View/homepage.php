@@ -9,19 +9,5 @@ Anything complex should be calculated in the model -->
         <a href="index.php?page=classes">Classes</a>
     </nav>
 
-    <?php
-    $sql = "SELECT name, id FROM student";
-    $result = $connection->query($sql);
-
-    if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-    echo "Name: " . $row["name"] . $row["id"] . "<br>";
-    }
-    } else {
-    echo "0 results";
-    }
-    $connection->close();
-    ?>
-
 </section>
 <?php require 'includes/footer.php'?>
