@@ -1,6 +1,6 @@
 <?php
 
-class Teacher extends Student
+class Teacher extends StudentController
 {
 
     private array $assignedStudents;
