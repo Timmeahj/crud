@@ -1,11 +1,27 @@
 <?php require 'includes/header.php'?>
+
 <!-- this is the view, try to put only simple if's and loops here.
 Anything complex should be calculated in the model -->
 <section>
-    <h4>Hello</h4>
+    <nav>
+        <a href="index.php?page=students">Students</a>
+        <a href="index.php?page=teachers">Teachers</a>
+        <a href="index.php?page=classes">Classes</a>
+    </nav>
 
-    <p><a href="index.php?page=info">To info page</a></p>
+    <?php
+    $sql = "SELECT name, id FROM student";
+    $result = $connection->query($sql);
 
-    <p>Put your content here.</p>
+    if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+    echo "Name: " . $row["name"] . $row["id"] . "<br>";
+    }
+    } else {
+    echo "0 results";
+    }
+    $connection->close();
+    ?>
+
 </section>
 <?php require 'includes/footer.php'?>
