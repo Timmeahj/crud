@@ -10,6 +10,13 @@ class StudentController
         // then the view will actually display them.
 
         //load the view
+
+        //TODO add edit button->set $POST to values properties of student->update table with new student properties->update database with new table data/student properties
+        //TODO add delete button->remove row from table->create function for removing deleted row data from database
+        //TODO add add button->add new row of data->set values to the corresponding student properties->create function for adding row data to database
+        require 'Model/Student.php';
+        $connection = new mysqli('localhost', 'root', 'yoboyobo123', 'school');
+        $student = new Student(null,null,null,null);
         require 'View/students.php';
     }
 }
