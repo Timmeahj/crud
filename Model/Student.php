@@ -11,6 +11,8 @@ class Student
 
     private string | null $teacher;
 
+    private StudentGetter $getter;
+
     /**
      * @param string|null $name
      * @param string|null $email

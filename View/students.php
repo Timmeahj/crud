@@ -14,11 +14,9 @@
                     <th>Name</th>
                     <th>E-mail</th>
                     <th>Class Id</th>
-                    <th>Teacher Name</th>
                     <th>Actions</th>
                 </tr>
                 <?php
-                $display->whatIsHappening();
                 $display->table($connection, $columns, $table);
                 ?>
             </table>
