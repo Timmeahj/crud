@@ -16,13 +16,6 @@ class StudentController
         $updater = new DatabaseUpdater();
         $student = new Student(null,null,null,null, null);
 
-        function whatIsHappening() {
-            echo '<h2>$_GET</h2>';
-            var_dump($_GET);
-            echo '<h2>$_POST</h2>';
-            var_dump($_POST);
-        }
-
         require 'View/students.php';
 
         whatIsHappening();
@@ -48,8 +41,13 @@ class StudentController
                 $student->setTeacher($_POST["teacher_name"]);
                 $_POST["teacher_name"] = "";
             }
+            if (isset($_POST) && !empty($_POST)) {
+                $id = $student->getId();
+                $name = $student->getName();
+                $email = $student->getEmail();
+                $classId = $student->getClass();
+                $updater->updateStudent($connection, $id, $name, $email, $classId);
+            }
         }
-        echo "<br>";
-        var_dump($student);
     }
 }

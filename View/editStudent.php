@@ -5,7 +5,7 @@ $teacher = $display->teacher($connection, $_GET["id"]);
 
 <form method="post" action="index.php?page=student">
     <label>Id: </label>
-    <input name="id" type="number" placeholder="<?php echo $student["id"]?>">
+    <input name="id" type="number" value="<?php echo $student["id"]?>" readonly>
     <label>Name: </label>
     <input name="name" type="text" placeholder="<?php echo $student["name"]?>">
     <label>E-mail: </label>
