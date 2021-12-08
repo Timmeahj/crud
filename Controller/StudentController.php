@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types = 1);
+
 
 class StudentController
 {
@@ -14,16 +16,28 @@ var_dump("laki");
         //TODO add edit button->set $POST to values properties of student->update table with new student properties->update database with new table data/student properties
         //TODO add delete button->remove row from table->create function for removing deleted row data from database
         //TODO add add button->add new row of data->set values to the corresponding student properties->create function for adding row data to database
-        require './View/Model/Student.php';
+        require 'Model/Student.php';
         $connection = new mysqli('localhost', 'root', '', 'school');
         $student = new Student(null,null,null,null);
-        if(isset($_POST["add"])){
-            $name = $_POST['name'];
-            $email = $_POST["email"];
+        
+	if (isset($_POST['add'])) {
+		
+		$sql = $connection->prepare("INSERT INTO student (name,email,class_id) VALUES (?, ?, ?)");  
+		$name=$_POST['name'];
+		$email = $_POST['email'];
+		$class_id= $_POST['class_id'];
+		$sql->bind_param("sss", $name, $email, $class_id); 
+		if($sql->execute()) {
+			$success_message = "Added Successfully";
+		} else {
+			$error_message = "Problem in Adding New Record";
+		}
+		$sql->close();   
+		
+	} 
 
-            $result = $connection->query("INSERT INTO student (name, email, class) VALUES('$name', '$email', 1) ");            // die($mysqli->error);
-            var_dump($result);
-        }
+      
         require 'View/students.php';
     }
 }
+

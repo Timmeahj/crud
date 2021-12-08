@@ -29,14 +29,33 @@
             }
             
             ?>
-            <?php require_once './Controller/StudentController.php'?>
-            <form action="" method="POST">
-                <label>Name</label>
-                <input type="text" name="name" value="Enter your name">
-                <lable>E-mail</lable>
-                <input type="text" name="email" value="Enter you e-mail">
-                <button type="submit" name="add">ADD</button>
-            </form>
+<form name="frmUser" method="post" action="">
+<div class="button_link"><a href="index.php"> Back to List </a></div>
+<table style='border:"0" align="center"' cellpadding="10" cellspacing="0" width="500" class="tbl-qa">
+	<thead>
+		<tr>
+			<th colspan="2" class="table-header">Add New Student</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="table-row">
+			<td><label>Name</label></td>
+			<td><input type="text" name="name" class="txtField"></td>
+		</tr>
+		<tr class="table-row">
+			<td><label>Email</label></td>
+			<td><input type="text" name="email" class="txtField"></td>
+		</tr>
+		<tr class="table-row">
+			<td><label>class_id</label></td>
+			<td><input type="text" name="class_id" class="txtField"></td>
+		</tr>
+		<tr class="table-row">
+			<td colspan="2"><input type="submit" name="add" value="Submit" class="demo-form-submit"></td>
+		</tr>
+	</tbody>
+</table>
+</form>
             <?php
 
 
