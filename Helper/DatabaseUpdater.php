@@ -20,7 +20,7 @@ class DatabaseUpdater
         $id = (int)$id;
         $sql = "update teacher set name = '$name' where id = (select teacher_id from class where id = (select class_id from student where id=$id))";
         if ($connection->query($sql) === TRUE) {
-            echo "Teacher name updated successfully";
+            echo "<br>Teacher name updated successfully";
         } else {
             echo "Error updating record: " . $connection->error;
         }
