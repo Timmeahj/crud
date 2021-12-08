@@ -14,6 +14,11 @@ class StudentGetter
                 foreach ($array as $value) {
                         echo "<td>$row[$value]</td>";
                 }
+                if (isset($_GET["view"]) && $_GET["view"] === "detailed") {
+                    $id = (int)$row["id"];
+                    $teacher = $this->teacher($connection, $id);
+                    echo "<td>${teacher["name"]}</td>";
+                }
                 echo "<td><a href='index.php?page=edit&type=student&id=${row["id"]}'>Edit</a></td></tr>";
             }
         } else {

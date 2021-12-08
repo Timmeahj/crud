@@ -9,7 +9,18 @@ class DatabaseUpdater
         $classId = (int)$classId;
         $sql = "UPDATE student SET  name = '$name', email = '$email', class_id = '$classId' WHERE ID = $id";
         if ($connection->query($sql) === TRUE) {
-            echo "Record updated successfully";
+            echo "Student records updated successfully";
+        } else {
+            echo "Error updating record: " . $connection->error;
+        }
+    }
+
+    public function updateStudentTeacherName($connection, $id, $name): void
+    {
+        $id = (int)$id;
+        $sql = "update teacher set name = '$name' where id = (select teacher_id from class where id = (select class_id from student where id=$id))";
+        if ($connection->query($sql) === TRUE) {
+            echo "Teacher name updated successfully";
         } else {
             echo "Error updating record: " . $connection->error;
         }

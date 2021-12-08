@@ -2,11 +2,11 @@
 
 class Student
 {
-    protected string | null $id;
+    private string | null $id;
 
-    protected string | null $name;
+    private string | null $name;
 
-    protected string | null $email;
+    private string | null $email;
 
     private string | null $class;
 
