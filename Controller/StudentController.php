@@ -42,7 +42,20 @@ class StudentController
                 $student->setTeacher($_POST["teacher_name"]);
                 $_POST["teacher_name"] = "";
             }
-            if (isset($_POST) && !empty($_POST)) {
+            if (isset($_POST['add']) && !empty($_POST['add'])) {
+                $sql = $connection->prepare("INSERT INTO student (id, name, email, class_id) VALUES (?, ?, ?, ?)");
+                $idN = (int)$_POST["add_id"];
+                $nameN = $_POST['add_name'];
+                $emailN = $_POST['add_email'];
+                $classIdN = (int)$_POST['add_class_id'];
+                $sql->bind_param("issi", $idN,$nameN, $emailN, $classIdN);
+                if($sql->execute()) {
+                    echo "Student records added successfully";
+                } else {
+                    echo "Problem in adding new records";
+                }
+            }
+            if (isset($_POST["edit"]) && !empty($_POST["edit"])) {
                 $id = $student->getId();
                 $name = $student->getName();
                 $email = $student->getEmail();

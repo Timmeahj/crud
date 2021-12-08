@@ -8,7 +8,7 @@ class Student
 
     private string | null $email;
 
-    private string | null $class;
+    private string | null  $class;
 
     private string | null $teacher;
 

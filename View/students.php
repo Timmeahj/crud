@@ -12,8 +12,6 @@
                 echo '<a href="index.php?page=student&view=detailed">Detailed View</a>';
             }
             ?>
-
-
         </nav>
 
         <h4>Student page</h4>
@@ -32,6 +30,18 @@
                 $display->table($connection, $columns, $table);
                 ?>
             </table>
+
+        <form method="post">
+            <label>Id: </label>
+            <input name="add_id" type="number">
+            <label>Name: </label>
+            <input name="add_name" type="text">
+            <label>E-mail: </label>
+            <input name="add_email" type="text">
+            <label>Class Id: </label>
+            <input name="add_class_id" type="number">
+            <button type="submit" name="add" value="submit">Add Student</button>
+        </form>
 
     </section>
 <?php require 'includes/footer.php'?>

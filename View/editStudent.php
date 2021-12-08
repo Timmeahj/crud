@@ -16,5 +16,5 @@ $teacher = $display->teacher($connection, $_GET["id"]);
     </select>
     <label>Teacher: </label>
     <input name="teacher_name" type="text" placeholder="<?php echo $teacher["name"]?>">
-    <button type="submit">Submit</button>
+    <button type="submit" name="edit" value="submit">Submit</button>
 </form>
