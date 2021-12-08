@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 class Student
 {
@@ -7,22 +7,22 @@ class Student
 
     protected string | null $email;
 
-    private string | null $class;
+    private int | null $class;
 
-    private string | null $teacher;
+    
 
     /**
      * @param string|null $name
      * @param string|null $email
-     * @param string|null $class
-     * @param string|null $teacher
+     * @param int|null $class
+     *
      */
-    public function __construct(?string $name, ?string $email, ?string $class, ?string $teacher)
+    public function __construct(?string $name, ?string $email, ?int $class)
     {
         $this->name = $name;
         $this->email = $email;
         $this->class = $class;
-        $this->teacher = $teacher;
+ 
     }
 
 
@@ -59,7 +59,7 @@ class Student
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getClass(): string
     {
@@ -67,27 +67,15 @@ class Student
     }
 
     /**
-     * @param string $class
+     * @param int $class
      */
-    public function setClass(string $class): void
+    public function setClass(int $class): void
     {
         $this->class = $class;
     }
 
-    /**
-     * @return string
-     */
-    public function getTeacher(): string
-    {
-        return $this->teacher;
-    }
-
-    /**
-     * @param string $teacher
-     */
-    public function setTeacher(string $teacher): void
-    {
-        $this->teacher = $teacher;
-    }
+  
 
 }
+
+

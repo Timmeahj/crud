@@ -26,13 +26,14 @@ var_dump("laki");
 		$name=$_POST['name'];
 		$email = $_POST['email'];
 		$class_id= $_POST['class_id'];
-		$sql->bind_param("sss", $name, $email, $class_id); 
+		$sql->bind_param("sss", $name, $email, $class_id);  //string = s i = integer d =d double b=boolenan
+        
 		if($sql->execute()) {
 			$success_message = "Added Successfully";
 		} else {
 			$error_message = "Problem in Adding New Record";
 		}
-		$sql->close();   
+		// $sql->close();   
 		
 	} 
 
