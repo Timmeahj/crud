@@ -4,9 +4,9 @@
 Anything complex should be calculated in the model -->
 <section>
     <nav>
-        <a href="index.php?page=students">Students</a>
-        <a href="index.php?page=teachers">Teachers</a>
-        <a href="index.php?page=classes">Classes</a>
+        <a href="index.php?page=student">Students</a>
+        <a href="index.php?page=teacher">Teachers</a>
+        <a href="index.php?page=class">Classes</a>
     </nav>
 
 </section>
