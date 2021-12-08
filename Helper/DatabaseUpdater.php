@@ -3,9 +3,15 @@
 class DatabaseUpdater
 {
 
-    public static function updateName($connection, string $name, int $id): void
+    public static function updateName($connection, string | int $id, string $name, string $email, string | int $class_id): void
     {
-        $connection->query("UPDATE student SET  name = $name WHERE ID = $id");
+        $id = (int)$id;
+        $sql = "UPDATE student SET  name = '$name', email =  WHERE ID = $id";
+        if ($connection->query($sql) === TRUE) {
+            echo "Record updated successfully";
+        } else {
+            echo "Error updating record: " . $connection->error;
+        }
     }
 
 }
