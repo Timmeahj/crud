@@ -1,5 +1,6 @@
     <footer>
-        &copy; BeCode <?php echo date('Y')?>
+        <br>
+        &copy; Jörg, Christiaan, Lakneshwaran <?php echo date('Y')?>
     </footer>
 </body>
 </html>
