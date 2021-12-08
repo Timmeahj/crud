@@ -55,6 +55,15 @@ class StudentController
                     echo "Problem in adding new records";
                 }
             }
+            if(isset($_POST['delete'])) {
+                $id = (int)$_POST['delete'];
+                $sqlDelete = "DELETE FROM student WHERE id=$id";
+                if ($connection->query($sqlDelete) === TRUE) {
+                    echo "Student records deleted successfully";
+                } else {
+                    echo "Error deleting record: " . $connection->error;
+                }
+            }
             if (isset($_POST["edit"]) && !empty($_POST["edit"])) {
                 $id = $student->getId();
                 $name = $student->getName();
@@ -64,12 +73,7 @@ class StudentController
                 $updater->updateStudent($connection, $id, $name, $email, $classId);
                 $updater->updateStudentTeacherName($connection, $id, $teacher);
             }
-            if(isset($_POST['delete'])) {
-                $id = (int)$_POST['delete'];
-                $sqlDelete = "DELETE FROM student WHERE id=$id";
-                $result = $connection->query($sqlDelete);
-                echo 'Record succesfully deleted!';
-            }
+
         }
     }
 }

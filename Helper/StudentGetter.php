@@ -20,7 +20,7 @@ class StudentGetter
                     echo "<td>${teacher["name"]}</td>";
                 }
                 echo "<td><a href='index.php?page=edit&type=student&id=${row["id"]}'>Edit</a></td>
-                        <td><form method='post'><button name='delete' value=${row["id"]}>Delete</button></form></td></tr>";
+                      <td><form method='post'><button name='delete' value=${row["id"]}>Delete</button></form></td></tr>";
 
             }
         } else {
