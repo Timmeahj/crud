@@ -2,6 +2,7 @@
 
 class Student
 {
+    protected string | null $id;
 
     protected string | null $name;
 
@@ -11,22 +12,37 @@ class Student
 
     private string | null $teacher;
 
-    private StudentGetter $getter;
-
     /**
+     * @param string|null $id
      * @param string|null $name
      * @param string|null $email
      * @param string|null $class
      * @param string|null $teacher
      */
-    public function __construct(?string $name, ?string $email, ?string $class, ?string $teacher)
+    public function __construct(?string $id, ?string $name, ?string $email, ?string $class, ?string $teacher)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->class = $class;
         $this->teacher = $teacher;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string|null $id
+     */
+    public function setId(?string $id): void
+    {
+        $this->id = $id;
+    }
 
     /**
      * @return string

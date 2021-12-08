@@ -11,7 +11,7 @@ $teacher = $display->teacher($connection, $_GET["id"]);
     <label>E-mail: </label>
     <input name="email" type="text" placeholder="<?php echo $student["email"]?>">
     <label>Class Id: </label>
-    <select name="class_id" value="">
+    <select name="class_id">
         <?php $display->classIdOptions($connection, $table) ?>
     </select>
     <label>Teacher: </label>
