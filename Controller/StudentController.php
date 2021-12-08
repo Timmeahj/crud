@@ -64,6 +64,12 @@ class StudentController
                 $updater->updateStudent($connection, $id, $name, $email, $classId);
                 $updater->updateStudentTeacherName($connection, $id, $teacher);
             }
+            if(isset($_POST['delete'])) {
+                $id = (int)$_POST['delete'];
+                $sqlDelete = "DELETE FROM student WHERE id=$id";
+                $result = $connection->query($sqlDelete);
+                echo 'Record succesfully deleted!';
+            }
         }
     }
 }

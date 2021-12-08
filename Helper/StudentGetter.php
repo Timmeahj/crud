@@ -19,7 +19,9 @@ class StudentGetter
                     $teacher = $this->teacher($connection, $id);
                     echo "<td>${teacher["name"]}</td>";
                 }
-                echo "<td><a href='index.php?page=edit&type=student&id=${row["id"]}'>Edit</a></td></tr>";
+                echo "<td><a href='index.php?page=edit&type=student&id=${row["id"]}'>Edit</a></td>
+                        <td><form method='post'><button name='delete' value=${row["id"]}>Delete</button></form></td></tr>";
+
             }
         } else {
             echo "0 results";
