@@ -36,7 +36,7 @@ class TeacherGetter{
     public function teacher($connection, $id): array
     {
         $id = (int)$id;
-        $sql = "SELECT name, email FROM teacher WHERE id=$id";
+        $sql = "SELECT id, name, email FROM teacher WHERE id=$id";
         $result = $connection->query($sql);
         return $result->fetch_assoc();
     }
