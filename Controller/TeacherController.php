@@ -4,15 +4,11 @@ class TeacherController
 {
     public function render(array $GET, array $POST)
     {
-        //you should not echo anything inside your controller - only assign vars here
-        // then the view will actually display them.
-
-
         require 'Model/Teacher.php';
         require 'Helper/TeacherGetter.php';
         require 'Helper/DatabaseUpdater.php';
 
-        $connection = new mysqli('localhost', 'root', '', 'school');
+        $connection = new mysqli('localhost', 'root', 'yoboyobo123', 'school');
         $columns = ["id", "name", "email"];
         if (isset($_GET["view"]) && $_GET["view"] === "detailed") {
             $columns = ["id", "name", "email"];
@@ -30,7 +26,6 @@ class TeacherController
                 $teacher->setId($_POST["id"]);
                 $_POST["id"] = "";
             }
-         
             if (isset($_POST["name"]) && $_POST["name"] !== "") {
                 $teacher->setName($_POST["name"]);
                 $_POST["name"] = "";
@@ -48,20 +43,12 @@ class TeacherController
                     echo "Error deleting record: " . $connection->error;
                 }
              }
-    
              if (isset($_POST["edit"]) && !empty($_POST["edit"])) {
                 $id = $teacher->getId();
                 $name = $teacher->getName();
                 $email = $teacher->getEmail();
-                var_dump($name, $email);
-      
-              
                 $updater->updateTeacher($connection, $id, $name, $email);
             }
-          
          }
-
-
-
     }
 }

@@ -2,33 +2,23 @@
 
 class StudentGetter
 {
-    public function table($connection, $array, $table): void
+    public function getAllStudents($connection): array
     {
-        $string = implode(", ", $array);
-        $sql = "SELECT $string FROM $table";
+        $students = [];
+        $sql = "SELECT * FROM student";
         $result = $connection->query($sql);
 
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                foreach ($array as $value) {
-                        echo "<td>$row[$value]</td>";
-                }
-                if (isset($_GET["view"]) && $_GET["view"] === "detailed") {
-                    $id = (int)$row["id"];
-                    $teacher = $this->teacher($connection, $id);
-                    echo "<td>${teacher["name"]}</td>";
-                }
-                echo "<td><a href='index.php?page=edit&type=student&id=${row["id"]}'>Edit</a></td>
-                      <td><form method='post'><button name='delete' value=${row["id"]}>Delete</button></form></td></tr>";
-
+                $students[] = $row;
             }
         } else {
             echo "0 results";
         }
+        return $students;
     }
 
-    public function student($connection, $id): array
+    public function getStudent($connection, $id): array
     {
         $id = (int)$id;
         $sql = "SELECT * FROM student WHERE id=$id";
@@ -36,7 +26,7 @@ class StudentGetter
         return $result->fetch_assoc();
     }
 
-    public function teacher($connection, $id): mixed
+    public function getTeacherName($connection, $id): mixed
     {
         $id = (int)$id;
         $sql = "select name from teacher where id = (select teacher_id from class where id = (select class_id from student where id=$id))";
@@ -44,17 +34,19 @@ class StudentGetter
         return $result->fetch_assoc();
     }
 
-    public function classIdOptions($connection, $table): void
+    public function getClassIdOptions($connection): array
     {
-        $sql = "SELECT DISTINCT class_id FROM $table";
+        $classIds = [];
+        $sql = "SELECT DISTINCT class_id FROM student";
         $result = $connection->query($sql);
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo "<option>".$row["class_id"]."</option>";
+                $classIds[] = $row;
             }
         } else {
             echo "0 results";
         }
+        return $classIds;
     }
 }

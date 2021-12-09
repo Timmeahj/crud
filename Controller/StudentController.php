@@ -10,11 +10,6 @@ class StudentController
         require 'Helper/DatabaseUpdater.php';
 
         $connection = new mysqli('localhost', 'root', 'yoboyobo123', 'school');
-        $columns = ["id", "name"];
-        if (isset($_GET["view"]) && $_GET["view"] === "detailed") {
-            $columns = ["id", "name", "email", "class_id"];
-        }
-        $table = "student";
         $display = new StudentGetter();
         $updater = new DatabaseUpdater();
         $student = new Student(null,null,null,null, null);
@@ -73,7 +68,6 @@ class StudentController
                 $updater->updateStudent($connection, $id, $name, $email, $classId);
                 $updater->updateStudentTeacherName($connection, $id, $teacher);
             }
-
         }
     }
 }

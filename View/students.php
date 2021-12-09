@@ -4,14 +4,6 @@
             <p><a href="index.php">Back to homepage</a></p>
             <a href="index.php?page=teacher">Teachers</a>
             <a href="index.php?page=class">Classes</a>
-            <?php
-            if (isset($_GET["view"]) && $_GET["view"] === "detailed") {
-                echo '<a href="index.php?page=student">General View</a>';
-            }
-            if (!isset($_GET["view"])) {
-                echo '<a href="index.php?page=student&view=detailed">Detailed View</a>';
-            }
-            ?>
         </nav>
 
         <h4>Student page</h4>
@@ -20,14 +12,18 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <?php
-                    if (isset($_GET["view"]) && $_GET["view"] === "detailed") {
-                        echo "<th>E-mail</th><th>Class Id</th><th>Teacher</th><th>Actions</th>";
-                    }
-                    ?>
                 </tr>
                 <?php
-                $display->table($connection, $columns, $table);
+                $students = $display->getAllStudents($connection);
+                foreach ($students as $student) {
+                    echo "<tr>
+                            <td>${student['id']}</td>
+                            <td>${student['name']}</td>
+                            <td><a href='index.php?page=edit&type=student&id=${student['id']}'>Edit</a></td>
+                            <td><form method='post'><button name='delete' value=${student['id']}>Delete</button></form></td>
+                            <td><a href='index.php?page=details&type=student&id=${student['id']}'>Details</a></td>
+                            </tr>";
+                }
                 ?>
             </table>
 

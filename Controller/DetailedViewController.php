@@ -1,6 +1,6 @@
 <?php
 
-class EditController
+class DetailedViewController
 {
     public function render(array $GET, array $POST)
     {
@@ -11,14 +11,7 @@ class EditController
 
         if ($_GET["type"] === "student") {
             $display = new StudentGetter();
-            require 'View/editStudent.php';
-        }
-
-        if ($_GET["type"] === "teacher") {
-            $columns = ["id", "name", "email"];
-            $table = "teacher";
-            $display = new TeacherGetter();
-            require 'View/editTeacher.php';
+            require 'View/studentDetails.php';
         }
     }
 }

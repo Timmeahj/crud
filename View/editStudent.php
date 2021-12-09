@@ -1,18 +1,18 @@
 <?php
-$class = $display->student($connection, $_GET["id"]);
-$teacher = $display->teacher($connection, $_GET["id"]);
+$student = $display->getStudent($connection, $_GET["id"]);
+$teacher = $display->getTeacherName($connection, $_GET["id"]);
 ?>
 
 <form method="post" action="index.php?page=student">
     <label>Id: </label>
-    <input name="id" type="number" value="<?php echo $class["id"]?>" readonly>
+    <input name="id" type="number" value="<?php echo $student["id"]?>" readonly>
     <label>Name: </label>
-    <input name="name" type="text" value="<?php echo $class["name"]?>">
+    <input name="name" type="text" value="<?php echo $student["name"]?>">
     <label>E-mail: </label>
-    <input name="email" type="text" value="<?php echo $class["email"]?>">
+    <input name="email" type="text" value="<?php echo $student["email"]?>">
     <label>Class Id: </label>
     <select name="class_id">
-        <?php $display->classIdOptions($connection, $table) ?>
+        <?php $display->getClassIdOptions($connection) ?>
     </select>
     <label>Teacher: </label>
     <input name="teacher_name" type="text" value="<?php echo $teacher["name"]?>">
