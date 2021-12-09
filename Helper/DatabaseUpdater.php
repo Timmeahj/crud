@@ -38,4 +38,17 @@ class DatabaseUpdater
         }
     }
 
+    
+    public function updateTeacher($connection, $id, $name, $email): void
+    {
+        
+        $id = (int)$id;
+        $sql = "update teacher set name = '$name', email = '$email' where id = $id";
+        if ($connection->query($sql) === TRUE) {
+            echo " <br>Teacher ". $name . " updated successfully";
+        } else {
+            echo "Error updating record: " . $connection->error;
+        }
+    }
+
 }
