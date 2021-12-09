@@ -5,7 +5,7 @@ class SchoolClass
 
     private string | null $id;
 
-    private string | null$name;
+    private string | null $name;
 
     private string | null $location;
 

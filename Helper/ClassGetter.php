@@ -1,6 +1,6 @@
 <?php
 
-class ClassGetter extends StudentGetter
+class ClassGetter
 {
 
     public function table($connection, $array, $table): void
@@ -20,15 +20,27 @@ class ClassGetter extends StudentGetter
                     $id = (int)$row["id"];
                     $teacher = $this->teacher($connection, $id);
                     echo "<td>${teacher["name"]}</td>";
-                    //TODO list of all students in a class
+                    $students = $this->listOfStudents($connection, $id);
+                    echo "<td>";
+                    foreach ($students as $student) {
+                        echo $student["name"] . "<br>";
+                    }
+                    echo "</td>";
                 }
                 echo "<td><a href='index.php?page=edit&type=class&id=${row["id"]}'>Edit</a></td>
                       <td><form method='post'><button name='delete' value=${row["id"]}>Delete</button></form></td></tr>";
-
             }
         } else {
             echo "0 results";
         }
+    }
+
+    public function getClass($connection, $id): array
+    {
+        $id = (int)$id;
+        $sql = "SELECT * FROM class WHERE id=$id";
+        $result = $connection->query($sql);
+        return $result->fetch_assoc();
     }
 
     public function teacher($connection, $id): mixed
@@ -41,10 +53,28 @@ class ClassGetter extends StudentGetter
 
     public function listOfStudents($connection, $id): mixed
     {
+        $students = [];
         $id = (int)$id;
-        $sql = ""; //TODO sql query of list of students from class id
+        $sql = "select name from student where class_id = $id";
         $result = $connection->query($sql);
-        return $result->fetch_assoc();
+        while ($row = $result->fetch_assoc()) {
+            $students[] = $row;
+        }
+        return $students;
+    }
+
+    public function teacherIdOptions($connection, $table): void
+    {
+        $sql = "SELECT DISTINCT teacher_id FROM $table";
+        $result = $connection->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<option>".$row["teacher_id"]."</option>";
+            }
+        } else {
+            echo "0 results";
+        }
     }
 
 }

@@ -15,6 +15,18 @@ class DatabaseUpdater
         }
     }
 
+    public static function updateClass(mysqli $connection, string | int $id, string $name, string $location, string | int $teacherId): void
+    {
+        $id = (int)$id;
+        $teacherId = (int)$teacherId;
+        $sql = "UPDATE class SET  name = '$name', location = '$location', teacher_id = '$teacherId' WHERE ID = $id";
+        if ($connection->query($sql) === TRUE) {
+            echo "Class records updated successfully";
+        } else {
+            echo "Error updating record: " . $connection->error;
+        }
+    }
+
     public function updateStudentTeacherName($connection, $id, $name): void
     {
         $id = (int)$id;
