@@ -15,10 +15,14 @@ class TeacherGetter{
                         echo "<td>$row[$value]</td>";
                 }
                 if (isset($_GET["view"]) && $_GET["view"] === "detailed") {
-                    $id = (int)$row["id"];
-                    $teacher = $this->teacher($connection, $id);
-                    echo "<td>${teacher["name"]}</td>";
-                    
+                    $id = (int)$row["id"];                   
+                    $students = $this->listOfStudents($connection, $id);
+                    echo "<td>";
+                    foreach ($students as $student) {
+                        echo $student["name"] . "<br>";
+                    }
+                    echo "</td>";
+
                 }
                 echo "<td><a href='index.php?page=edit&type=teacher&id=${row["id"]}'>Edit</a></td>
                       <td><form method='post'><button name='delete' value=${row["id"]}>Delete</button></form></td></tr>";
@@ -35,6 +39,18 @@ class TeacherGetter{
         $sql = "SELECT name, email FROM teacher WHERE id=$id";
         $result = $connection->query($sql);
         return $result->fetch_assoc();
+    }
+
+    public function listOfStudents($connection, $id): mixed
+    {
+        $students = [];
+        $id = (int)$id;
+        $sql = "select name from student where class_id = $id";
+        $result = $connection->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            $students[] = $row;
+        }
+        return $students;
     }
 
 

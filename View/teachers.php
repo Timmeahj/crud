@@ -20,9 +20,10 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
+                    <th>E-mail</th>
                     <?php
                     if (isset($_GET["view"]) && $_GET["view"] === "detailed") {
-                        echo "<th>E-mail</th><th>Class Id</th><th>Teacher</th><th>Actions</th>";
+                        echo "<th>Students</th><th>Actions</th>";
                     }
                     ?>
                 </tr>
