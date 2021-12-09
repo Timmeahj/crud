@@ -8,7 +8,7 @@ class SchoolClassController
         require 'Helper/ClassGetter.php';
         require 'Helper/DatabaseUpdater.php';
 
-        $connection = new mysqli('localhost', 'root', 'yoboyobo123', 'school');
+        $connection = new mysqli('localhost', 'root', '', 'school');
         $columns = ["id", "name"];
         if (isset($_GET["view"]) && $_GET["view"] === "detailed") {
             $columns = ["id", "name", "location"];

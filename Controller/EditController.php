@@ -7,7 +7,7 @@ class EditController
         require 'Helper/StudentGetter.php';
         require 'Helper/TeacherGetter.php';
 
-        $connection = new mysqli('localhost', 'root', 'yoboyobo123', 'school');
+        $connection = new mysqli('localhost', 'root', '', 'school');
 
 
         if ($_GET["type"] === "student") {
