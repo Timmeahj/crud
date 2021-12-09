@@ -4,10 +4,20 @@ class SchoolClassController
 {
     public function render(array $GET, array $POST)
     {
-        //you should not echo anything inside your controller - only assign vars here
-        // then the view will actually display them.
+        require 'Model/SchoolClass.php';
+        require 'Helper/ClassGetter.php';
+        require 'Helper/DatabaseUpdater.php';
 
-        //load the view
+        $connection = new mysqli('localhost', 'root', 'yoboyobo123', 'school');
+        $columns = ["id", "name"];
+        if (isset($_GET["view"]) && $_GET["view"] === "detailed") {
+            $columns = ["id", "name", "location"];
+        }
+        $table = "class";
+        $display = new ClassGetter();
+        $updater = new DatabaseUpdater();
+        $class = new SchoolClass(null, null, null, null, null);
+
         require 'View/classes.php';
     }
 }

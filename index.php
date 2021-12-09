@@ -26,5 +26,4 @@ if(isset($_GET['page']) && $_GET['page'] === 'class') {
 if(isset($_GET['page']) && $_GET['page'] === 'edit') {
     $controller = new EditController();
 }
-
 $controller->render($_GET, $_POST);
